@@ -9,8 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiConfig {
-
-    private const val BASE_URL = Config.urlmain + "project/todoapp/public/api/"
+//    http://inyongtisto.com/todoapp/public/api/push
+//    private const val BASE_URL = Config.urlmain + "project/todoapp/public/api/"
+    private const val BASE_URL = Config.urlmain + "todoapp/public/api/"
     private val client: Retrofit
         get() {
             val gson = GsonBuilder()

@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.firebase.iid.FirebaseInstanceId
 import com.inyongtisto.todoapp.R
 import com.inyongtisto.todoapp.activity.auth.LoginActivity
 import com.inyongtisto.todoapp.activity.auth.AutListener
@@ -29,11 +30,19 @@ class EnterActivity : AppCompatActivity(), AutListener {
 
     private lateinit var mViewModel: AuthViewModel
     private var googleApiClient: GoogleSignInClient? = null
+    private var fcm = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter)
         Helper.blackStatusBar(this)
+
+        //get Fcm
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener { task ->
+                fcm = task.result?.token!!
+                Log.d("Token:", fcm)
+            }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -91,6 +100,7 @@ class EnterActivity : AppCompatActivity(), AutListener {
         user.name = account.displayName
         user.photo = account.photoUrl.toString()
         user.password = account.email.toString().substring(0, account.email.toString().indexOf("@"))
+        user.fcm = fcm
         mViewModel.loginGoogle(user)
     }
 

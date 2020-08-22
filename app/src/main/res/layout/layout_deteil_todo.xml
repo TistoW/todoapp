@@ -74,12 +74,11 @@
             <EditText
                 android:id="@+id/edt_todo"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@null"
                 android:backgroundTint="@color/grey"
                 android:hint="New Task"
-                android:maxLines="2"
                 android:textColorHint="@color/grey_8" />
 
         </LinearLayout>

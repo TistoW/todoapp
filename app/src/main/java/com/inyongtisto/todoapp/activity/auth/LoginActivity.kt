@@ -3,10 +3,13 @@ package com.inyongtisto.todoapp.activity.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
 import com.inyongtisto.todoapp.activity.main.MainActivity
 import com.inyongtisto.todoapp.R
 import com.inyongtisto.todoapp.helper.Helper
@@ -19,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity(), AutListener {
 
     private lateinit var mViewModel: AuthViewModel
+    private var fcm: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,13 @@ class LoginActivity : AppCompatActivity(), AutListener {
         Helper.blackStatusBar(this)
         mViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         mViewModel.listener = this
+
+        //get Fcm
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnCompleteListener { task ->
+                fcm = task.result?.token!!
+                Log.d("Token:", fcm)
+            }
 
         mainButton()
     }
@@ -46,7 +57,7 @@ class LoginActivity : AppCompatActivity(), AutListener {
             val user = User()
             user.email = edt_email.text.toString()
             user.password = edt_password.text.toString()
-
+            user.fcm = fcm
             mViewModel.onProgress()
             mViewModel.login(user)
         }

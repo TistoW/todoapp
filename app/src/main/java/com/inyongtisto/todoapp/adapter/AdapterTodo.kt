@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.inyongtisto.todoapp.R
@@ -46,7 +47,7 @@ class AdapterTodo(private var context: Activity, private var data: ArrayList<Tod
 
             holder.tvTgl.text = mTime
         }
-        holder.img.setOnClickListener {
+        holder.btnDone.setOnClickListener {
             holder.img.setImageResource(R.drawable.ic_check_black_24dp)
             Handler().postDelayed({
                 holder.imgKlip.visibility = View.VISIBLE
@@ -84,5 +85,6 @@ class AdapterTodo(private var context: Activity, private var data: ArrayList<Tod
         var img: ImageView = itemView.findViewById(R.id.img)
         var imgKlip: ImageView = itemView.findViewById(R.id.img_klip)
         var layout: LinearLayout = itemView.findViewById(R.id.layout)
+        var btnDone: RelativeLayout = itemView.findViewById(R.id.btn_done)
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -254,6 +255,22 @@ class TodoFragment : Fragment(), TodoListener {
                 }
                 updateData(data, i)
             }
+        }
+
+        val mDate: String
+        val format = "yyyy-MM-dd kk:mm"
+        if (!data.date.contains("0000")) {
+            displayView(divTanggal)
+            hideView(btnDatePic)
+            val time = Helper.convertTanggal(data.date, format, "kk:mm")
+            mDate = Helper.convertTanggal(data.date, format)
+            if (time != "24:00") {
+                displayView(divTime)
+                hideView(btnTimePic)
+            }
+
+            tvTanggal.text = mDate
+            tvTime.text = time
         }
 
         btnBack.setOnClickListener {
