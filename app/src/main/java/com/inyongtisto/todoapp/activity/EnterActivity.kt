@@ -84,7 +84,7 @@ class EnterActivity : AppCompatActivity(), AutListener {
                 + "\nphoto:" + account.photoUrl
         )
 
-        MyAlert.alartLoading(this, "Loading...")
+        MyAlert.loading(this, "Loading...")
 
         val user = User()
         user.email = account.email
@@ -108,6 +108,7 @@ class EnterActivity : AppCompatActivity(), AutListener {
     }
 
     override fun onFailure(message: String) {
-
+        MyAlert.alertDismis()
+        MyAlert.error(this, "Oops..", message)
     }
 }

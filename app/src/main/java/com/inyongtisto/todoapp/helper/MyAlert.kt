@@ -8,7 +8,7 @@ import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 
 object MyAlert {
     private var alertDialog: AlertDialog? = null
-    fun alartLoading(context: Activity, pesan: String) {
+    fun loading(context: Activity, pesan: String) {
         val inflater = context.layoutInflater
         val layout = inflater.inflate(R.layout.view_loading, null)
         val tvPesan: TextView = layout.findViewById(R.id.tv_pesan)

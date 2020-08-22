@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.inyongtisto.todoapp.activity.main.MainActivity
 import com.inyongtisto.todoapp.R
 import com.inyongtisto.todoapp.helper.Helper
+import com.inyongtisto.todoapp.helper.MyAlert
 import com.inyongtisto.todoapp.helper.SharePref
 import com.inyongtisto.todoapp.model.ResponModel
 import com.inyongtisto.todoapp.model.User
@@ -26,17 +27,7 @@ class LoginActivity : AppCompatActivity(), AutListener {
         mViewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
         mViewModel.listener = this
 
-        onProgress()
         mainButton()
-    }
-
-    private fun onProgress() {
-        mViewModel.showProgress.observe(this, Observer {
-            if (it)
-                pd.visibility = View.VISIBLE
-            else
-                pd.visibility = View.GONE
-        })
     }
 
     private fun mainButton() {
@@ -51,6 +42,7 @@ class LoginActivity : AppCompatActivity(), AutListener {
                 return@setOnClickListener
             }
 
+            MyAlert.loading(this, "Loading...")
             val user = User()
             user.email = edt_email.text.toString()
             user.password = edt_password.text.toString()
@@ -70,6 +62,7 @@ class LoginActivity : AppCompatActivity(), AutListener {
     }
 
     override fun onFailure(message: String) {
+        MyAlert.alertDismis()
         when (message) {
             "Email tidak terdaftar" -> {
                 val intent = Intent(this, RegisterActivity::class.java)
