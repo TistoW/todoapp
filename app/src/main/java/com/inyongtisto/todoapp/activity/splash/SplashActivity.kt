@@ -74,7 +74,8 @@ class SplashActivity : AppCompatActivity(), SplashListener {
         val appLinkData: Uri? = intent.data
         if (Intent.ACTION_VIEW == appLinkAction) {
             appLinkData?.lastPathSegment?.also { recipeId ->
-                Uri.parse("content://com.recipe_app/recipe/")
+//                Uri.parse("content://com.recipe_app/recipe/")
+                Uri.parse("https://inyongtisto.com/todoapps/")
                     .buildUpon()
                     .appendPath(recipeId)
                     .build().also { appData ->
@@ -117,12 +118,16 @@ class SplashActivity : AppCompatActivity(), SplashListener {
         val handler = Handler()
         handler.postDelayed({
             if (s.getStatusLogin())
-                mViewModel.getTask(s.getUser()!!)
+                if (s.getListTask() != null && s.getListTask()!!.tasks.size > 0) {
+                    startActivityMainDelay()
+                } else {
+                    mViewModel.getTask(s.getUser()!!)
+                }
             else {
                 startActivity(Intent(this, EnterActivity::class.java))
                 finish()
             }
-        }, 1000)
+        }, 500)
 
     }
 
