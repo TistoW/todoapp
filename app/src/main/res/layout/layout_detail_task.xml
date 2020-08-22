@@ -41,6 +41,7 @@
         </LinearLayout>
 
         <View
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#DDDDDD" />
@@ -64,6 +65,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginVertical="10dp"
             android:id="@+id/btn_delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,6 +90,35 @@
                 android:text="Default list can't be deleted"
                 android:textColor="@color/grey_5"
                 android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <LinearLayout
+            android:id="@+id/btn_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_black_24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Share all tasks with friends"
+                android:textColor="@color/dark"
+                android:textSize="15dp" />
 
         </LinearLayout>
 

@@ -13,6 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.inyongtisto.todoapp.R
@@ -24,11 +28,12 @@ import com.inyongtisto.todoapp.helper.Helper
 import com.inyongtisto.todoapp.helper.MyAlert
 import com.inyongtisto.todoapp.helper.SharePref
 import com.inyongtisto.todoapp.model.Task
+import com.inyongtisto.todoapp.model.Todo
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_list_task.*
 
 
-class MainActivity : AppCompatActivity(), MainListener {
+class MainActivity : AppCompatActivity(), MainListener, GoogleApiClient.OnConnectionFailedListener {
 
     private lateinit var viewModel: MainViewModel
     private var lstTask: ArrayList<Task> = ArrayList()
@@ -40,12 +45,14 @@ class MainActivity : AppCompatActivity(), MainListener {
         Helper.blackStatusBar(this)
         s = SharePref(this)
 
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
+        googleApiClient = GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions).build()
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getTask(s.getUser()!!)
         viewModel.listener = this
         viewModel.listTask.observe(this, Observer {
             lstTask = it
-
         })
 
         cekDate()
@@ -87,6 +94,7 @@ class MainActivity : AppCompatActivity(), MainListener {
         dialogDetail!!.setContentView(view)
         dialogDetail!!.show()
 
+        val btnShare = view.findViewById<LinearLayout>(R.id.btn_share)
         val btnRename = view.findViewById<LinearLayout>(R.id.btn_rename)
         val btnDelete = view.findViewById<LinearLayout>(R.id.btn_delete)
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
@@ -98,6 +106,11 @@ class MainActivity : AppCompatActivity(), MainListener {
         if (lstTask.size == 1) {
             tvStatus.setTextColor(resources.getColor(R.color.grey_5))
             tvWaring.visibility = View.VISIBLE
+        }
+
+        btnShare.setOnClickListener {
+            shareTask()
+            dialogDetail!!.dismiss()
         }
 
         btnRename.setOnClickListener {
@@ -116,16 +129,55 @@ class MainActivity : AppCompatActivity(), MainListener {
         }
     }
 
+    private fun shareTask() {
+        if (s.getListTodo()!!.todos.size == 0) {
+            MyAlert.info(this, "Oops...", "You don't have any tasks yet")
+            return
+        }
+
+        var lstTodo = "**To-do On Progress**\n"
+        var lstTodoComplete = "\n**Completed To-do**\n"
+        for (t: Todo in s.getListTodo()!!.todos) {
+            if (t.status == "0")
+                lstTodo += "${t.todo}\n"
+            else
+                lstTodoComplete += "${t.todo}\n"
+        }
+
+        val message = "https://wetheapp.com/\n\n$lstTodo $lstTodoComplete"
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, message)
+        intent.type = "text/plain"
+        startActivity(Intent.createChooser(intent, "Share to.."))
+    }
+
     private fun bottomSheet() {
         val view: View = layoutInflater.inflate(R.layout.layout_list_task, null)
         val dialog = BottomSheetDialog(this)
         dialog.setContentView(view)
         dialog.show()
 
+        val btnShare = view.findViewById<LinearLayout>(R.id.btn_share)
         val btnSignOut = view.findViewById<LinearLayout>(R.id.btn_signOut)
         val btnCreate = view.findViewById<LinearLayout>(R.id.btn_createTask)
         val btnAboutUs = view.findViewById<LinearLayout>(R.id.btn_aboutUs)
         val rvTask = view.findViewById<RecyclerView>(R.id.rv_task)
+        val tvNama = view.findViewById<TextView>(R.id.tv_nama)
+        val tvEmail = view.findViewById<TextView>(R.id.tv_email)
+
+        tvNama.text = s.getUser()?.name
+        tvEmail.text = s.getUser()?.email
+
+        btnShare.setOnClickListener {
+            val message = "https://wetheapp.com/"
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            intent.type = "text/plain"
+            startActivity(Intent.createChooser(intent, "Share to.."))
+            dialog.dismiss()
+        }
 
         btnAboutUs.setOnClickListener {
             MyAlert.loading(this, "Loading...")
@@ -137,7 +189,8 @@ class MainActivity : AppCompatActivity(), MainListener {
             s.clearAll()
             val intent = Intent(this, SplashActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
+            startActivity(Intent(intent))
+            signOut()
         }
 
         btnCreate.setOnClickListener {
@@ -157,6 +210,12 @@ class MainActivity : AppCompatActivity(), MainListener {
                 s.setTaskAktive(data)
             }
         })
+    }
+
+    private var googleApiClient: GoogleApiClient? = null
+    fun signOut() {
+        googleApiClient!!.connect()
+        Auth.GoogleSignInApi.signOut(googleApiClient)
     }
 
     fun openFragment(task: Task, b: Boolean) {
@@ -248,5 +307,14 @@ class MainActivity : AppCompatActivity(), MainListener {
 
     override fun onFailure(message: String) {
         dialogCreate.dismiss()
+    }
+
+    override fun onConnectionFailed(p0: ConnectionResult) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onResume() {
+        googleApiClient!!.connect()
+        super.onResume()
     }
 }

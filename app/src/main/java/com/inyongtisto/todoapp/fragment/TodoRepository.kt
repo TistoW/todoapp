@@ -1,11 +1,10 @@
 package com.inyongtisto.todoapp.fragment
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.inyongtisto.todoapp.app.ApiConfig
 import com.inyongtisto.todoapp.model.ResponModel
-import com.inyongtisto.todoapp.model.Task
 import com.inyongtisto.todoapp.model.Todo
-import com.inyongtisto.todoapp.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,14 +56,19 @@ class TodoRepository {
         })
     }
 
-    fun updateTodo(todo: Todo) {
+    fun updateTodo(todo: Todo, param: TodoListener) {
+        Log.d("ini dari sana ke sini", "check")
         ApiConfig.instanceRetrofit.updateTodo(todo).enqueue(object : Callback<ResponModel> {
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-
+                Log.d("ini pailur po", "check")
             }
 
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-
+                if (response.body()!!.success == 1){
+                    param.onChanged(response.body()!!.message)
+                    Log.d("ini bukan", "check")
+                }
+                Log.d("ini bukan dongs", "check")
             }
         })
     }

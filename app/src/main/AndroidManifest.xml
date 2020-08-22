@@ -16,13 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.splash.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activity.main.MainActivity" />
         <activity android:name=".BaruActivity" />
         <activity android:name=".activity.EnterActivity" />
@@ -30,7 +23,38 @@
         <activity android:name=".activity.auth.RegisterActivity" />
         <activity
             android:name=".activity.AboutUsActivity"
-            android:theme="@style/AppThemeColorPrimary" />
+            android:theme="@style/AppThemeColorPrimary">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="inyongtisto.com"
+                    android:path="/todoapp/about" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="https"
+                    android:host="inyongtisto.com"
+                    android:pathPrefix="/todoapps" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
@@ -41,6 +65,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/notif_channel_id" />
+
         <service
             android:name=".util.MyFirebaseService"
             android:exported="false"

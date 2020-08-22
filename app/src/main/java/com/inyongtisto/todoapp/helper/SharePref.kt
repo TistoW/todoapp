@@ -13,6 +13,7 @@ class SharePref {
     private val statusLogin = "login"
     private val user = "user"
     private val listTask = "listTask"
+    private val listTodo = "listTodo"
     private val task = "task"
 
     private val mypref = "MAIN_PREF"
@@ -54,6 +55,16 @@ class SharePref {
     fun getTaskAktive(): Task? {
         val data = sp!!.getString(task, null) ?: return null
         return Gson().fromJson(data, Task::class.java)
+    }
+
+    fun setListTodo(data: ResponModel) {
+        val json = Gson().toJson(data, ResponModel::class.java)
+        sp!!.edit().putString(listTodo, json).apply()
+    }
+
+    fun getListTodo(): ResponModel? {
+        val data = sp!!.getString(listTodo, null) ?: return null
+        return Gson().fromJson(data, ResponModel::class.java)
     }
 
     fun setStatusLogin(status: Boolean){

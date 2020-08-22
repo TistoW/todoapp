@@ -32,6 +32,18 @@ class AuthViewModel : ViewModel() {
         })
     }
 
+    fun lupaPassword(user: User) {
+        repo.lupaPassword(user, object :AutListener{
+            override fun onSuccess(data: ResponModel) {
+                listener!!.onSuccess(data)
+            }
+
+            override fun onFailure(message: String) {
+                listener!!.onFailure(message)
+            }
+        })
+    }
+
     fun loginGoogle(user: User) {
         repo.loginGoogle(user, object :AutListener{
             override fun onSuccess(data: ResponModel) {

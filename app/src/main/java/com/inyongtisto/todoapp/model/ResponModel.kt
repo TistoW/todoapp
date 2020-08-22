@@ -10,7 +10,7 @@ class ResponModel : Serializable {
 
     val task = Task()
     val tasks = ArrayList<Task>()
-    val todos = ArrayList<Todo>()
+    var todos = ArrayList<Todo>()
 
 }
 

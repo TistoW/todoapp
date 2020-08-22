@@ -8,7 +8,12 @@ interface ApiService {
 
     @POST("login")
     fun login(
-        @Body user: User
+            @Body user: User
+    ): Call<ResponModel>
+
+    @POST("lupa_password")
+    fun lupaPassword(
+            @Body user: User
     ): Call<ResponModel>
 
     @POST("login_google")

@@ -44,12 +44,16 @@ class LoginActivity : AppCompatActivity(), AutListener {
     private fun mainButton() {
         btn_login.setOnClickListener {
             if (edt_email.text.isEmpty()) {
-                edt_email.error = "Kolom Email tidak boleh kosong"
+                edt_email.error = "Field emails can't be empty"
                 edt_email.requestFocus()
                 return@setOnClickListener
             } else if (edt_password.text.isEmpty()) {
-                edt_password.error = "Kolom Password tidak boleh kosong"
+                edt_password.error = "Field passwords can't be empty"
                 edt_password.requestFocus()
+                return@setOnClickListener
+            } else if (!edt_email.text.contains("@")) {
+                edt_email.error = "Email format is wrong"
+                edt_email.requestFocus()
                 return@setOnClickListener
             }
 
@@ -61,15 +65,59 @@ class LoginActivity : AppCompatActivity(), AutListener {
             mViewModel.onProgress()
             mViewModel.login(user)
         }
+
+        btn_lupaPassword.setOnClickListener {
+            if (edt_email.text.isEmpty()) {
+                edt_email.error = "Please enter your correct email address"
+                edt_email.requestFocus()
+                return@setOnClickListener
+            }
+            div_login.visibility = View.GONE
+            div_password.visibility = View.VISIBLE
+        }
+
+        btn_changePassword.setOnClickListener {
+
+            val pas1 = edt_password1.text.toString()
+            val pas2 = edt_password2.text.toString()
+            Log.d("pass", "ps1:$pas1 ps2:$pas2")
+            if (pas1 != pas2) {
+                edt_password1.error = "Password doesn't match"
+                edt_password1.requestFocus()
+                return@setOnClickListener
+            } else if (edt_password1.text.isEmpty()) {
+                edt_password1.error = "Field passwords can't be empty"
+                edt_password1.requestFocus()
+                return@setOnClickListener
+            }
+
+            MyAlert.loading(this, "Loading...")
+            val user = User()
+            user.email = edt_email.text.toString()
+            user.password = edt_password1.text.toString()
+
+            mViewModel.lupaPassword(user)
+        }
     }
 
+
     override fun onSuccess(data: ResponModel) {
+        MyAlert.alertDismis()
+        if (data.message == "Password Changed") {
+            MyAlert.success(this, "Success", "Your password has been changed\ntry to login with the new password")
+            onBackPressed()
+            return
+        }
+
+        val s = SharePref(this)
+        s.setStatusLogin(true)
+        s.setUser(data.user)
+        s.setListTask(data)
+        s.setTaskAktive(data.task)
         val i = Intent(this, MainActivity::class.java)
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(i)
         finish()
-        SharePref(this).setStatusLogin(true)
-        SharePref(this).setUser(data.user)
     }
 
     override fun onFailure(message: String) {
@@ -88,6 +136,16 @@ class LoginActivity : AppCompatActivity(), AutListener {
             else -> {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if (div_password.visibility == View.VISIBLE) {
+            div_password.visibility = View.GONE
+            div_login.visibility = View.VISIBLE
+            return
+        } else {
+            super.onBackPressed()
         }
     }
 }

@@ -22,6 +22,7 @@ import com.inyongtisto.todoapp.adapter.AdapterTodo
 import com.inyongtisto.todoapp.adapter.AdapterTodoComplete
 import com.inyongtisto.todoapp.helper.Helper
 import com.inyongtisto.todoapp.helper.SharePref
+import com.inyongtisto.todoapp.model.ResponModel
 import com.inyongtisto.todoapp.model.Todo
 import java.text.SimpleDateFormat
 import java.util.*
@@ -438,6 +439,10 @@ class TodoFragment : Fragment(), TodoListener {
         this.lstTodoComplete = lstTodoComplete
         displayTodo()
         displayTodoComplete()
+        val rd = ResponModel()
+        rd.todos = data
+        SharePref(activity!!).setListTodo(rd)
+
         tvTotal.text = "Complete(" + lstTodoComplete.size + ")"
         if (dialog != null) dialog!!.dismiss()
     }
@@ -445,6 +450,15 @@ class TodoFragment : Fragment(), TodoListener {
     override fun onFailure(message: String) {
         Toast.makeText(activity!!, message, Toast.LENGTH_SHORT).show()
         if (dialog != null) dialog!!.dismiss()
+    }
+
+    override fun onChanged(message: String) {
+        Log.d("Cek this", message)
+        val rd = ResponModel()
+        for (t: Todo in lstTodo) rd.todos.add(t)
+        for (t: Todo in lstTodoComplete) rd.todos.add(t)
+        for (t: Todo in rd.todos) Log.d("Cek", "Name:" + t.todo + " sts:" + t.status)
+        s.setListTodo(rd)
     }
 
     private fun hideView(view: View) {

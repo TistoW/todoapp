@@ -1,9 +1,16 @@
 package com.inyongtisto.todoapp.activity.splash
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
@@ -20,6 +27,7 @@ import com.inyongtisto.todoapp.activity.main.MainViewModel
 import com.inyongtisto.todoapp.adapter.AdapterTask
 import com.inyongtisto.todoapp.app.ApiConfig
 import com.inyongtisto.todoapp.helper.Helper
+import com.inyongtisto.todoapp.helper.MyAlert
 import com.inyongtisto.todoapp.helper.SharePref
 import com.inyongtisto.todoapp.model.ResponModel
 import com.inyongtisto.todoapp.model.Task
@@ -40,10 +48,69 @@ class SplashActivity : AppCompatActivity(), SplashListener {
         s = SharePref(this)
         Helper.blackStatusBar(this)
 
+        val appLinkIntent = intent
+        val appLinkAction = appLinkIntent.action
+        val appLinkData = appLinkIntent.data
+
+        handleIntent(intent!!)
+
         mViewModel = ViewModelProvider(this).get(SplashViewModel::class.java)
         mViewModel.listener = this
 
-        cekStatusLogin()
+        if (checkInternet()) {
+            cekStatusLogin()
+        } else {
+            onInternetError()
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent!!)
+    }
+
+    private fun handleIntent(intent: Intent) {
+        val appLinkAction = intent.action
+        val appLinkData: Uri? = intent.data
+        if (Intent.ACTION_VIEW == appLinkAction) {
+            appLinkData?.lastPathSegment?.also { recipeId ->
+                Uri.parse("content://com.recipe_app/recipe/")
+                    .buildUpon()
+                    .appendPath(recipeId)
+                    .build().also { appData ->
+                        Log.d("Cek", "appData:$appData")
+//                        showRecipe(appData)
+                    }
+            }
+        }
+    }
+
+    fun onInternetError() {
+        MyAlert.alertDismis()
+        MyAlert.info(this, "Oops", "Check your internet Connection", "Close App", "Try Angin", object : MyAlert.DefaultCallback() {
+            override fun onCancelCliked() {
+                MyAlert.loading(this@SplashActivity, "Cheking...")
+                val handler = Handler()
+                handler.postDelayed({
+                    if (checkInternet())
+                        mViewModel.getTask(s.getUser()!!)
+                    else {
+                        onInternetError()
+                    }
+                }, 2000)
+            }
+
+            override fun onConfirmCliked() {
+                MyAlert.alertDismis()
+                finish()
+            }
+        })
+    }
+
+    private fun checkInternet(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        return networkInfo != null && networkInfo.isConnected
     }
 
     private fun cekStatusLogin() {
@@ -71,6 +138,6 @@ class SplashActivity : AppCompatActivity(), SplashListener {
     }
 
     override fun onFailure(message: String) {
-        Helper.toast(this, message)
+        onInternetError()
     }
 }

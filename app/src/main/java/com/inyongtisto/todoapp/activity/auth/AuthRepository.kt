@@ -36,6 +36,25 @@ class AuthRepository {
         })
     }
 
+    fun lupaPassword(u: User, listener: AutListener) {
+        ApiConfig.instanceRetrofit.lupaPassword(u).enqueue(object : Callback<ResponModel> {
+            override fun onFailure(call: Call<ResponModel>, t: Throwable) {
+                showProgress.value = false
+                listener.onFailure(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
+                showProgress.value = false
+                val res = response.body()!!
+                if (res.success == 1) {
+                    listener.onSuccess(res)
+                } else {
+                    listener.onFailure(res.message)
+                }
+            }
+        })
+    }
+
     fun loginGoogle(u: User, listener: AutListener) {
         ApiConfig.instanceRetrofit.loginGoogle(u).enqueue(object : Callback<ResponModel> {
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
