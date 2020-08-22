@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.main.MainActivity">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefrash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/container"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/div_menu" />
+
+            <RelativeLayout
+                android:id="@+id/div_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@drawable/background_view_rever"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <RelativeLayout
+                        android:id="@+id/btn_menu"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="2dp"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:importantForAccessibility="no"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_menu_black_24dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btn_detailTask"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="2dp"
+                        android:clickable="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:importantForAccessibility="no"
+                            android:padding="2dp"
+                            android:src="@drawable/ic_more_vert_black_24dp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

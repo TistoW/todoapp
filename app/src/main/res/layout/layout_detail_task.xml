@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_konf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="VectorDrawableCompat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <LinearLayout
+            android:id="@+id/btn_rename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rename list"
+                android:textColor="@color/dark"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete list"
+                android:textColor="@color/dark"
+                android:textSize="15dp" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_waring"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Default list can't be deleted"
+                android:textColor="@color/grey_5"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDDDD" />
+
+    </LinearLayout>
+
+</LinearLayout>

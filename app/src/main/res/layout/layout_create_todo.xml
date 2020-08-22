@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_konf"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="VectorDrawableCompat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@+id/edt_title"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:backgroundTint="@color/grey"
+                android:hint="New Task"
+                android:maxLines="2"
+                android:textColorHint="@color/grey_8" />
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:id="@+id/div_tanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tanggal"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:id="@+id/tv_tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Senin 29 Agus"
+                    android:textColor="@color/dark"
+                    android:textSize="12dp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/btn_remove"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_close_black_24dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/btn_datePic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:importantForAccessibility="no"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_date_range_ungu_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_timePic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:importantForAccessibility="no"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_access_time_ungu_24dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Save"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <ProgressBar
+            android:id="@+id/pd"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_konf"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:ignore="VectorDrawableCompat">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="15dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/icon" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_nama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="@color/grey_7" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:id="@+id/btn_createTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Create new list"
+                    android:textColor="@color/dark"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:id="@+id/btn_aboutUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_info_outline_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="About Us"
+                    android:textColor="@color/dark"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:id="@+id/btn_signOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_input_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Sign Out"
+                    android:textColor="@color/dark"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="19dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/dark"
+                    android:textSize="11dp" />
+
+                <ImageView
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:src="@drawable/ic_info_outline_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms of service"
+                    android:textColor="@color/dark"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

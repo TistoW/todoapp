@@ -1,0 +1,196 @@
+{
+  "project_info": {
+    "project_number": "1090594170254",
+    "firebase_url": "https://monitoring-karyawan-2ab65.firebaseio.com",
+    "project_id": "monitoring-karyawan-2ab65",
+    "storage_bucket": "monitoring-karyawan-2ab65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090594170254:android:8ef6d416628b62c7d3b0df",
+        "android_client_info": {
+          "package_name": "com.inyongtisto.sampahku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090594170254-def18ajq7b20cqehrecn9gmcrkae9r7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inyongtisto.sampahku",
+            "certificate_hash": "c98b00bc985a9cc3f5cb5adc3cb5ca347af569a6"
+          }
+        },
+        {
+          "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMx6_xpeWdYL6dAnj0py8B1wuILBTWgws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090594170254:android:b14864cf7d222240d3b0df",
+        "android_client_info": {
+          "package_name": "com.inyongtisto.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090594170254-k5qp9f2457rlaesggh77becktkahhc7q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inyongtisto.todoapp",
+            "certificate_hash": "c98b00bc985a9cc3f5cb5adc3cb5ca347af569a6"
+          }
+        },
+        {
+          "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMx6_xpeWdYL6dAnj0py8B1wuILBTWgws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090594170254:android:e15799a31103bea2d3b0df",
+        "android_client_info": {
+          "package_name": "com.pendaki.pendaki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090594170254-cft59g5k60qluu3h9tvdugb3gpkm3hab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pendaki.pendaki",
+            "certificate_hash": "c98b00bc985a9cc3f5cb5adc3cb5ca347af569a6"
+          }
+        },
+        {
+          "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMx6_xpeWdYL6dAnj0py8B1wuILBTWgws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090594170254:android:c58c4ed6fcedd53e",
+        "android_client_info": {
+          "package_name": "id.co.cancreative.monitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090594170254-fe570ufohm6djavmje3ck6fl1b9q33hr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.cancreative.monitoring",
+            "certificate_hash": "7adc84eba7118aadef4435184c990f01de4cb79d"
+          }
+        },
+        {
+          "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMx6_xpeWdYL6dAnj0py8B1wuILBTWgws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090594170254:android:8857d3143469ba15d3b0df",
+        "android_client_info": {
+          "package_name": "id.web.can.tokoku2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090594170254-gsatk5a2h28p7ta3jl7h2p8mrlrttub4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.web.can.tokoku2",
+            "certificate_hash": "851b2fed0f246c60c2b6d27e31f473933ea35f15"
+          }
+        },
+        {
+          "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMx6_xpeWdYL6dAnj0py8B1wuILBTWgws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090594170254-ok7ju5dhmq9ubk1o08lmnqsl6nalmndo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

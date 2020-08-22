@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_konf"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="VectorDrawableCompat">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/btn_close"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="2dp"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:importantForAccessibility="no"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_close_black_24dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Create new list"
+                android:textColor="@color/dark"
+                android:textSize="17dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/btn_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Done"
+                    android:layout_marginRight="15dp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <EditText
+                android:layout_marginLeft="5dp"
+                android:id="@+id/edt_title"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:backgroundTint="#f5f5f5"
+                android:hint="Enter List Title"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD" />
+
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:id="@+id/pd"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
