@@ -30,11 +30,6 @@ class TodoViewModel : ViewModel() {
             override fun onFailure(message: String) {
                 listener!!.onFailure(message)
             }
-
-            override fun onChanged(message: String) {
-
-            }
-
         })
     }
 
@@ -47,29 +42,11 @@ class TodoViewModel : ViewModel() {
             override fun onFailure(message: String) {
                 listener!!.onFailure(message)
             }
-
-            override fun onChanged(message: String) {
-
-            }
-
         })
     }
 
     fun updateTodo(todo: Todo) {
-        Log.d("ini bukan update", "check")
-        repo.updateTodo(todo, object : TodoListener{
-            override fun onSuccess(data: ArrayList<Todo>) {
-            }
-
-            override fun onFailure(message: String) {
-            }
-
-            override fun onChanged(message: String) {
-                listener!!.onChanged(message)
-                Log.d("ini bukan dua", "check")
-            }
-
-        })
+        repo.updateTodo(todo)
     }
 
     fun deleteTodo(todo: Todo) {

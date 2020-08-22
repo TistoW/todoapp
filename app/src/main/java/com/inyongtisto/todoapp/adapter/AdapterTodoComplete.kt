@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.inyongtisto.todoapp.R
@@ -43,6 +44,10 @@ class AdapterTodoComplete(private var context: Activity, private var data: Array
                 }, 100)
             }, 100)
         }
+
+        holder.layout.setOnClickListener {
+            listener.onClick(a, holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -51,11 +56,12 @@ class AdapterTodoComplete(private var context: Activity, private var data: Array
 
     interface Listener {
         fun onChanged(data: Todo, i: Int)
+        fun onClick(data: Todo, i: Int)
     }
 
     inner class HolderNotif(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvTodo: TextView = itemView.findViewById(R.id.tv_todo)
         var img: ImageView = itemView.findViewById(R.id.img)
-//        var layout: CardView = itemView.findViewById(R.id.layout)
+        var layout: LinearLayout = itemView.findViewById(R.id.layout)
     }
 }

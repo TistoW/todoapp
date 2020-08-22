@@ -54,6 +54,7 @@ class TodoFragment : Fragment(), TodoListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_todo, container, false)
         init(view)
+        s = SharePref(activity!!)
 
         val id = arguments!!.getString("task")
         val title = arguments!!.getString("title")
@@ -113,6 +114,7 @@ class TodoFragment : Fragment(), TodoListener {
                 viewModel.updateTodo(data)
                 lstTodoComplete.add(0, data)
                 adapterTodoComplete!!.notifyItemInserted(0)
+                updatePreffList()
                 tvTotal.text = "Complete(" + lstTodoComplete.size + ")"
 
                 if (lstTodoComplete.size > 0) {
@@ -152,6 +154,7 @@ class TodoFragment : Fragment(), TodoListener {
                 viewModel.updateTodo(data)
                 lstTodo.add(0, data)
                 adapterTodo!!.notifyItemInserted(0)
+                updatePreffList()
                 tvTotal.text = "Complete(" + lstTodoComplete.size + ")"
                 if (lstTodoComplete.size > 0) {
                     divComplete.visibility = View.VISIBLE
@@ -161,6 +164,10 @@ class TodoFragment : Fragment(), TodoListener {
 
                 val view: View = activity!!.findViewById(android.R.id.content)
                 Helper.snackBar(view, "1 marked incomplete")
+            }
+
+            override fun onClick(data: Todo, i: Int) {
+                bottomDetailTodo(data, i)
             }
         })
 
@@ -216,6 +223,7 @@ class TodoFragment : Fragment(), TodoListener {
                 return@setOnClickListener
             } else {
                 createTodo(edtTitle.text.toString())
+                dialog!!.dismiss()
             }
         }
     }
@@ -231,6 +239,7 @@ class TodoFragment : Fragment(), TodoListener {
         dialogDetail!!.show()
         dialogDetail!!.behavior.state = BottomSheetBehavior.STATE_EXPANDED
 
+        val divSetting: LinearLayout = view.findViewById(R.id.div_settting)
         val btnBack: ImageView = view.findViewById(R.id.btn_back)
         val btnDelete: ImageView = view.findViewById(R.id.btn_delete)
         val btnSelesai: ImageView = view.findViewById(R.id.btn_selesai)
@@ -256,6 +265,10 @@ class TodoFragment : Fragment(), TodoListener {
                 }
                 updateData(data, i)
             }
+        }
+
+        if (data.status == "0") {
+            hideView(divSetting)
         }
 
         val mDate: String
@@ -285,8 +298,14 @@ class TodoFragment : Fragment(), TodoListener {
         btnDelete.setOnClickListener {
             dialogDetail!!.dismiss()
             viewModel.deleteTodo(data)
-            lstTodo.removeAt(i)
-            adapterTodo!!.notifyItemRemoved(i)
+            if (data.status == "0") {
+                lstTodoComplete.removeAt(i)
+                adapterTodoComplete!!.notifyItemRemoved(i)
+            } else {
+                lstTodo.removeAt(i)
+                adapterTodo!!.notifyItemRemoved(i)
+            }
+
         }
 
         btnSelesai.setOnClickListener {
@@ -318,11 +337,19 @@ class TodoFragment : Fragment(), TodoListener {
         }
     }
 
-    fun updateData(data: Todo, i: Int) {
+    private fun updateData(data: Todo, i: Int) {
         data.date = "$tanggal $time"
         viewModel.updateTodo(data)
-        lstTodo[i] = data
-        adapterTodo!!.notifyItemChanged(i)
+
+        if (data.status == "0") {
+            lstTodoComplete[i] = data
+            adapterTodoComplete!!.notifyItemChanged(i)
+        } else {
+            lstTodo[i] = data
+            adapterTodo!!.notifyItemChanged(i)
+        }
+
+        updatePreffList()
     }
 
     private fun createTodo(str: String) {
@@ -332,6 +359,11 @@ class TodoFragment : Fragment(), TodoListener {
         todo.date = "$tanggal $time"
         resetDateTime()
         viewModel.createTodo(todo)
+
+        lstTodo.add(0, todo)
+        adapterTodo!!.notifyItemInserted(0)
+
+        updatePreffList()
     }
 
     private var tanggal: String = "0000-00-00"
@@ -452,8 +484,7 @@ class TodoFragment : Fragment(), TodoListener {
         if (dialog != null) dialog!!.dismiss()
     }
 
-    override fun onChanged(message: String) {
-        Log.d("Cek this", message)
+    private fun updatePreffList() {
         val rd = ResponModel()
         for (t: Todo in lstTodo) rd.todos.add(t)
         for (t: Todo in lstTodoComplete) rd.todos.add(t)

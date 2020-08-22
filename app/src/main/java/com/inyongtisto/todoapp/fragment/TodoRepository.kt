@@ -56,19 +56,12 @@ class TodoRepository {
         })
     }
 
-    fun updateTodo(todo: Todo, param: TodoListener) {
-        Log.d("ini dari sana ke sini", "check")
+    fun updateTodo(todo: Todo) {
         ApiConfig.instanceRetrofit.updateTodo(todo).enqueue(object : Callback<ResponModel> {
             override fun onFailure(call: Call<ResponModel>, t: Throwable) {
-                Log.d("ini pailur po", "check")
             }
 
             override fun onResponse(call: Call<ResponModel>, response: Response<ResponModel>) {
-                if (response.body()!!.success == 1){
-                    param.onChanged(response.body()!!.message)
-                    Log.d("ini bukan", "check")
-                }
-                Log.d("ini bukan dongs", "check")
             }
         })
     }

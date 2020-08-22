@@ -139,9 +139,9 @@ class MainActivity : AppCompatActivity(), MainListener, GoogleApiClient.OnConnec
         var lstTodoComplete = "\n**Completed To-do**\n"
         for (t: Todo in s.getListTodo()!!.todos) {
             if (t.status == "0")
-                lstTodo += "${t.todo}\n"
-            else
                 lstTodoComplete += "${t.todo}\n"
+            else
+                lstTodo += "${t.todo}\n"
         }
 
         val message = "https://wetheapp.com/\n\n$lstTodo $lstTodoComplete"
