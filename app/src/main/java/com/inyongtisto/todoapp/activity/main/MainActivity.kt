@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.inyongtisto.todoapp.R
+import com.inyongtisto.todoapp.activity.AboutUsActivity
 import com.inyongtisto.todoapp.activity.splash.SplashActivity
 import com.inyongtisto.todoapp.adapter.AdapterTask
 import com.inyongtisto.todoapp.fragment.TodoFragment
 import com.inyongtisto.todoapp.helper.Helper
+import com.inyongtisto.todoapp.helper.MyAlert
 import com.inyongtisto.todoapp.helper.SharePref
 import com.inyongtisto.todoapp.model.Task
 import kotlinx.android.synthetic.main.activity_main.*
@@ -122,13 +124,20 @@ class MainActivity : AppCompatActivity(), MainListener {
 
         val btnSignOut = view.findViewById<LinearLayout>(R.id.btn_signOut)
         val btnCreate = view.findViewById<LinearLayout>(R.id.btn_createTask)
+        val btnAboutUs = view.findViewById<LinearLayout>(R.id.btn_aboutUs)
         val rvTask = view.findViewById<RecyclerView>(R.id.rv_task)
+
+        btnAboutUs.setOnClickListener {
+            MyAlert.loading(this, "Loading...")
+            startActivity(Intent(this, AboutUsActivity::class.java))
+            dialog.dismiss()
+        }
 
         btnSignOut.setOnClickListener {
             s.clearAll()
             val intent = Intent(this, SplashActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+
         }
 
         btnCreate.setOnClickListener {

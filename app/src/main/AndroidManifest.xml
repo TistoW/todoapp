@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.inyongtisto.todoapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -14,10 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.main.MainActivity" />
-        <activity android:name=".BaruActivity" />
-        <activity android:name=".activity.EnterActivity" />
-        <activity android:name=".activity.auth.LoginActivity" />
         <activity android:name=".activity.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".activity.main.MainActivity" />
+        <activity android:name=".BaruActivity" />
+        <activity android:name=".activity.EnterActivity" />
+        <activity android:name=".activity.auth.LoginActivity" />
         <activity android:name=".activity.auth.RegisterActivity" />
+        <activity android:name=".activity.AboutUsActivity"
+            android:theme="@style/AppThemeColorPrimary"/>
+
     </application>
 
 </manifest>
