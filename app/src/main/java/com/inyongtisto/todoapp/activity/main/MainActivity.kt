@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity(), MainListener, GoogleApiClient.OnConnec
         tvEmail.text = s.getUser()?.email
 
         btnShare.setOnClickListener {
-            val message = "https://wetheapp.com/"
+            val message = "https://wetheapp.com/\n\nHai, saya ada aplikasi keren bisa teman-teman coba untuk mengingatkan pekerjaan \nhttps://inyongtisto.com/todoapps"
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(Intent.EXTRA_TEXT, message)
