@@ -364,6 +364,12 @@ class TodoFragment : Fragment(), TodoListener {
         adapterTodo!!.notifyItemInserted(0)
 
         updatePreffList()
+
+        if (lstTodo.size > 0){
+            hideView(divKosong)
+        }else{
+            displayView(divKosong)
+        }
     }
 
     private var tanggal: String = "0000-00-00"
