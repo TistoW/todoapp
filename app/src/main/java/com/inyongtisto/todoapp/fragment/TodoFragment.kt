@@ -259,10 +259,9 @@ class TodoFragment : Fragment(), TodoListener {
 
         dialogDetail!!.setOnDismissListener {
             activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-            if (data.todo != edtTodo.text.toString() || tanggal != "0000-00-00" || time != "00:00") {
-                if (data.todo != edtTodo.text.toString()) {
-                    data.todo = edtTodo.text.toString()
-                }
+            Log.d("cek", "$tanggal $time")
+            if (data.todo != edtTodo.text.toString() || data.date != "$tanggal $time") {
+                data.todo = edtTodo.text.toString()
                 updateData(data, i)
             }
         }
@@ -288,8 +287,9 @@ class TodoFragment : Fragment(), TodoListener {
         }
 
         btnBack.setOnClickListener {
+            Log.d("cek", "$tanggal $time")
             dialogDetail!!.dismiss()
-            if (data.todo != edtTodo.text.toString()) {
+            if (data.todo != edtTodo.text.toString() || data.date != "$tanggal $time") {
                 data.todo = edtTodo.text.toString()
                 updateData(data, i)
             }
@@ -309,8 +309,9 @@ class TodoFragment : Fragment(), TodoListener {
         }
 
         btnSelesai.setOnClickListener {
+            Log.d("cek", "$tanggal $time")
             dialogDetail!!.dismiss()
-            if (data.todo != edtTodo.text.toString()) {
+            if (data.todo != edtTodo.text.toString() || data.date != "$tanggal $time") {
                 data.todo = edtTodo.text.toString()
                 updateData(data, i)
             }
@@ -339,6 +340,8 @@ class TodoFragment : Fragment(), TodoListener {
 
     private fun updateData(data: Todo, i: Int) {
         data.date = "$tanggal $time"
+
+        Log.d("cek", "" + data.date)
         viewModel.updateTodo(data)
 
         if (data.status == "0") {
@@ -365,9 +368,9 @@ class TodoFragment : Fragment(), TodoListener {
 
         updatePreffList()
 
-        if (lstTodo.size > 0){
+        if (lstTodo.size > 0) {
             hideView(divKosong)
-        }else{
+        } else {
             displayView(divKosong)
         }
     }

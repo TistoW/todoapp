@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity(), MainListener, GoogleApiClient.OnConnec
         tvEmail.text = s.getUser()?.email
 
         btnShare.setOnClickListener {
-            val message = "https://wetheapp.com/\n\nHai, saya ada aplikasi keren bisa teman-teman coba untuk mengingatkan pekerjaan \nhttps://inyongtisto.com/todoapps"
+            val message = "https://wetheapp.com/\n\nHai, saya ada aplikasi keren nih, teman-teman bisa coba untuk mencatat pekerjaan teman-teman semua\nhttps://inyongtisto.com/todoapps"
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(Intent.EXTRA_TEXT, message)
@@ -187,9 +187,13 @@ class MainActivity : AppCompatActivity(), MainListener, GoogleApiClient.OnConnec
 
         btnSignOut.setOnClickListener {
             s.clearAll()
-            val intent = Intent(this, SplashActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(Intent(intent))
+            val i = Intent(applicationContext, SplashActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            i.putExtra("EXIT", true)
+            startActivity(i)
+            finish()
             signOut()
         }
 
